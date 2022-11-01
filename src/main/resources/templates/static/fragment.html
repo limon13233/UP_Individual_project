@@ -1,0 +1,66 @@
+<head xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <div th:fragment="headerFragment">
+        <header >
+            <h1 align="center">SND</h1>
+            <h2 align="center">Магазин бытовой техники</h2>
+            <div class="d-flex justify-content-center py-3" >
+            <ul class="nav nav-pills">
+                <a>
+                <li class="nav-item" style="margin-left: 20px"><a href="/" class="nav-link active" aria-current="page">Главная</a></li>
+                    <li sec:authorize="hasAuthority('EMPLOYEE')" class="nav-item" style="margin-left: 20px"><a href="/ADD" class="nav-link active" aria-current="page">Добавить Информацию</a></li>
+                    <li sec:authorize="hasAuthority('EMPLOYEE')" class="nav-item" style="margin-left: 20px"><a href="/Edit" class="nav-link active" aria-current="page">Изменить информацию</a></li>
+                    <li sec:authorize="hasAuthority('EMPLOYEE')" class="nav-item" style="margin-left: 20px"><a href="/Delete" class="nav-link active" aria-current="page">Удалить информацию</a></li>
+                    <li sec:authorize="hasAuthority('EMPLOYEE')" class="nav-item" style="margin-left: 20px"><a href="/ViewAllOrder" class="nav-link active" aria-current="page">Все заказы</a></li>
+                    <li sec:authorize="hasAuthority('ADMIN')" class="nav-item" style="margin-left: 20px"><a href="/employee/admin" class="nav-link active" aria-current="page">AdminPanel</a></li>
+                    <li sec:authorize="hasAuthority('USER')" class="nav-item" style="margin-left: 20px"><a href="/ViewOrder" class="nav-link active" aria-current="page">Посмотреть заказы</a></li>
+                </a>
+                <li sec:authorize="isAuthenticated()" style="margin-left: 300px"><form th:action="@{/logout}" method="post">
+                    <input class="nav-link active" type="submit" value="Sign Out"/>
+                </form></li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item" style="margin-left: 20px"><a href="/registration" class="nav-link active" aria-current="page">Регистрация</a></li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item" style="margin-left: 20px"><a href="/login" class="nav-link active" aria-current="page">Авторизация</a></li>
+            </ul>
+            </div>
+        </header>
+    </div>
+</head>
+<footer style="background:LightGrey;text-align:center;margin-bottom:5px" th:fragment="footerFragment">
+    <a style="">Все права защещены мной</a>
+</footer>
+<div th:fragment = "AddFragment" class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <a>
+            <li class="nav-item" style="margin-left: 20px"><a href="/ADD/appliances" class="nav-link active" aria-current="page">Добавить Товар</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/ADD/employee" class="nav-link active" aria-current="page">Добавить Сотрудника</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/ADD/Point_of_issue" class="nav-link active" aria-current="page">Добавить Пункт Выдачи</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/ADD/Post" class="nav-link active" aria-current="page">Добавить должность</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/ADD/provider" class="nav-link active" aria-current="page">Добавить Поставщика</a></li>
+        </a>
+    </ul>
+
+</div>
+<div th:fragment = "EditFragment" class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <a>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Edit/appliances" class="nav-link active" aria-current="page">Изменить Товар</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Edit/user" class="nav-link active" aria-current="page">Изменить Сотрудника</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Edit/issue" class="nav-link active" aria-current="page">Изменить Пункт Выдачи</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Edit/post" class="nav-link active" aria-current="page">Изменить должность</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Edit/provider" class="nav-link active" aria-current="page">Изменить Поставщика</a></li>
+        </a>
+    </ul>
+
+</div>
+<div th:fragment = "DeleteFragment" class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <a>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Delete/appliances" class="nav-link active" aria-current="page">Удалить Товар</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Delete/user" class="nav-link active" aria-current="page">Удалить Сотрудника</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Delete/issue" class="nav-link active" aria-current="page">Удалить Пункт Выдачи</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Delete/post" class="nav-link active" aria-current="page">Удалить должность</a></li>
+            <li class="nav-item" style="margin-left: 20px"><a href="/Delete/provider" class="nav-link active" aria-current="page">Удалить Поставщика</a></li>
+        </a>
+    </ul>
+
+</div>

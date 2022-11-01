@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление товара</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <div th:insert="static/fragment :: headerFragment"></div>
+</head>
+<body>
+<div th:insert="static/fragment ::EditFragment"></div>
+<form th:object="${appliances}" method="post">
+    <label>
+        <a>Наимменование:</a>
+        <input th:field="*{name}" name="name" type="text" placeholder="Название товара" th:value="${name}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div><br>
+        <a>Цена:</a>
+        <input th:field="*{price}" name="price" type="number" placeholder="Цена" value="" style="margin:10px"/>
+        <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red"></div><br>
+        <a>Вес:</a>
+        <input th:field="*{wight}" name="wight" type="number" value="" placeholder="Вес" style="margin:10px"/>
+        <div th:if="${#fields.hasErrors('wight')}" th:errors="*{wight}" style="color: red"></div><br>
+        <a>Размер:</a>
+        <input th:field="*{size}" name="size" type="text" placeholder="Размер" style="margin:10px">
+        <div th:if="${#fields.hasErrors('size')}" th:errors="*{size}" style="color: red"></div><br>
+
+       <p style="margin:10px">
+           <a>Поставщик:</a>
+            <select  name="pprovider" style="width:190px">
+                <div th:each="element : ${provider}">
+                    <option th:text="${element.namecompany}"></option>
+                </div><br>
+            </select>
+        </p>
+
+        <input class="btn" type="submit" value="Изменить товар" style="background:LightGreen; margin: 10px">
+    </label>
+</form>
+
+<a style="background:LightBlue; margin: 10px" class="btn" href="/Edit/appliances">Отмена</a>
+</body>
+<footer th:insert="static/fragment :: footerFragment"></footer>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить товар</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <div th:insert="static/fragment :: headerFragment"></div>
+</head>
+<body>
+<div th:insert="static/fragment ::DeleteFragment"></div>
+<form method="post">
+    <label>
+        <ul class="nav nav-pills">
+            <li class="nav-item" style="margin: 20px" th:each="el: ${list_appliances}" >
+                <div th:if="${list_appliances}" >
+                    <div style="margin: 10px;text-align:Center" >
+                        <h3 th:text="${el.getName()}"> </h3>
+                        <h5 th:text=" ${el.getPrice()}+' руб.'"></h5>
+                        <p>Характеристики</p>
+                        <p th:text="'Вес: '+' '+${el.getWight()}+ ' кг.'"></p>
+                        <p th:text="'Размер: '+' '+${el.getSize()}"></p>
+                        <p th:text="'Производитель: '+' '+${el.getName_provider()}"></p>
+                    </div>
+                    <a class = "btn"   style="background:Red; margin-left:10px" th:href="'/Delete/appliances/' + ${el.getId()}" >Удаление</a>
+                </div>
+            </li>
+        </ul>
+    </label>
+</form>
+</body>
+<footer th:insert="static/fragment :: footerFragment"></footer>
+</html>

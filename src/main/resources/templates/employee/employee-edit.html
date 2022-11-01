@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:margin="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="Редактирование"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <div th:insert="static/fragment :: headerFragment"></div>
+</head>
+<body>
+<div th:insert="static/fragment ::EditFragment"></div>
+<form th:object="${employee}" method="post"  th:each="el: ${employee}">
+    <label>
+        <a>Фамилия:</a>
+        <input th:field="*{surname}" name="surname" type="text" placeholder="Фамилия" value="${el.surname}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red"></div><br>
+        <a>Имя:</a>
+        <input th:field="*{name}" name="name" type="text" placeholder="Имя" value="${el.name}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div><br>
+        <a>Отчество:</a>
+        <input th:field="*{middleName}" name="middleName" type="text" placeholder="Отчество" value="${el.middleName}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}" style="color: red"></div><br>
+        <a>Номер паспорта:</a>
+        <input th:field="*{number_passport}" name="number_passport" type="text" placeholder="номер паспорта" value="${el.number_passport}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('number_passport')}" th:errors="*{number_passport}" style="color: red"></div><br>
+        <a>Серия паспорта:</a>
+        <input th:field="*{serial_passport}" name="serial_passport" type="number" placeholder="Серия паспорта" value="${el.serial_passport}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('serial_passport')}" th:errors="*{serial_passport}" style="color: red"></div><br>
+        <a>Дата рождения:</a>
+        <input th:field="*{birthday}" name="birthday" type="date" placeholder="гггг-мм-дд" value="${el.birthday}" style="margin:10px">
+        <div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" value="${el.middleName}" style="color: red"></div><br>
+        <a>Телефон:</a>
+        <input th:field="*{phone}" name="phone" type="text" placeholder="Телефон" value="${el.phone}"  style="margin:10px">
+        <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" style="color: red"></div><br>
+
+        <p style="margin:10px">
+            <a>Должность:</a>
+            <select  name="pname" style="width:190px">
+                <option></option>
+        <div th:each="element : ${post}">
+
+            <option th:text="${element.postname}"></option>
+        </div><br>
+        </select>
+        </p>
+        <input class="btn" type="submit" value="Подтвердить" style="margin:10px;background: Orange">
+    </label>
+</form>
+</body>
+<footer th:insert="static/fragment :: footerFragment"></footer>
+</html>

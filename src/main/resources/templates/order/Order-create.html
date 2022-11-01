@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <div th:insert="static/fragment :: headerFragment"></div><title>Заказ</title>
+</head>
+<body>
+<form th:object="${order}" th:each="el: ${order}" method="post" >
+<label >
+    <div style="margin: 10px;text-align:Center">
+
+        <p th:text="'Номер заказ: '"></p>
+        <input name="id" th:field="*{id}" th:text="${el.id}" type="hidden"><br>
+        <a>Дата выполнения заказа:</a>
+        <input th:field="*{complited_date}" name="complited_date" type="date" placeholder="Дата выполнения" value="${el.complited_date}" style="margin:10px"/>
+        <div th:if="${#fields.hasErrors('complited_date')}" th:errors="*{complited_date}" style="color: red"></div><br>
+        <p th:text="'Товар: '+' '+${el.getappliances().getName()}"></p>
+        <p style="margin:10px">
+            <a>Пункт выдачи:</a>
+            <select  name="office" style="width:190px">
+                <div th:each="element : ${office}">
+                    <option th:text="${element.address}"></option>
+                </div> <br>
+            </select>
+        </p>
+    </div>
+
+    <input align="center" value="Подтвердить" class = "btn" type="submit" style="background:Orange; margin-left:10px"></input><br>
+    <a class = "btn"   style="background:Red; margin-left:10px" th:href="'/Delete/order/' + ${el.getId()}" >Отмена</a>
+    </div>
+</label>
+</form>
+</body>
+</html>
